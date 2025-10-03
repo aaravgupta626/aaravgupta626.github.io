@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Resume - Aarav Gupta</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="site-title">Aarav Gupta</h1>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="themeToggle" type="button" class="button" aria-pressed="false" aria-label="Toggle dark mode">
+          Toggle Theme
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container about-grid">
+        <figure class="profile">
+          <img src="IMG_2178.jpg" alt="Portrait of Aarav Gupta" width="240" height="240" />
+          <figcaption>Based in City · Open to internships Summer 2026</figcaption>
+        </figure>
+        <div class="about-copy">
+          <h2>About</h2>
+          <p class="drop-cap">
+            I am an undergraduate student studying <strong>Computer Science</strong> and <strong>Finance</strong>. I enjoy solving
+            ambiguous problems, building on the web, and telling clear stories with data.
+          </p>
+          <p>
+            I built this site with the  HTML/CSS/JS topics I learned in my web development class: semantic HTML, lists and tables,
+            forms with accessible labels, a CSS reset, Flexbox layout, media queries, and a small bit of JavaScript
+            for interactivity (no frameworks or external libraries).
+          </p>
+          <p>
+            Outside class, I love coffee, dance, and case interview prep. When I’m not coding, I’m probably
+            reading the WSJ, practicing Flexbox Froggy, or iterating on portfolio projects.
+          </p>
+
+          <ul class="about-links">
+            <li><a href="https://www.wsj.com/subscribe/?page=wsjcoreiybns&swg=true&trackingCode=6441gozmw29&ucid=WSJ_SCH_BNG_ACQ_NON_GCT_NAP_2PW_NAP_BAU&n2IKsaD9=n2IKsaD9&Pg9aWOPT=Pg9aWOPT&Cp5dKJWb=Cp5dKJWb&APCc9OU1=APCc9OU1&gclid=f6a9ba54666b150274e2d28b7d63441f&gclsrc=3p.ds&ef_id=aN8bCgAAAS7Yq1sf:20251003003834:s" target="_blank" rel="noopener">The Wall Street Journal</a></li>
+            <li><a href="https://flexboxfroggy.com/" target="_blank" rel="noopener">Flexbox Froggy</a></li>
+            <li><a href="#projects">Jump to Projects</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section">
+      <div class="container">
+        <h2>Experience</h2>
+        <article class="card">
+          <header class="card-header">
+            <h3>Strategy & Analysis Intern - Morgan Graves Consultants</h3>
+            <p class="meta">Sep 2024 – Dec 2024 · St. Louis, MO</p>
+            <button class="toggle button button--ghost" data-target="exp1">Show details</button>
+          </header>
+          <div id="exp1" class="card-body is-collapsed" hidden>
+            <ul>
+              <li>Analyzed firm’s economic environment and developed strategic recommendations.</li>
+              <li>Identified key focus areas and actions to avoid, improving project clarity.</li>
+              <li>Built simple dashboards with semantic HTML and accessible tables.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <header class="card-header">
+            <h3>Investment Analysis Intern - Lighthouse Advisors</h3>
+            <p class="meta">Jun 2024 – Jul 2024 · Mumbai, IN</p>
+            <button class="toggle button button--ghost" data-target="exp2">Show details</button>
+          </header>
+          <div id="exp2" class="card-body is-collapsed" hidden>
+            <ul>
+              <li>Researched industries and companies to understand growth drivers and risks.</li>
+              <li>Collaborated on valuation projects; summarized findings for stakeholders.</li>
+              <li>Practiced clean, semantic markup and CSS box‑model based layouts.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section">
+      <div class="container">
+        <h2>Education</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Institution</th>
+              <th scope="col">Degree</th>
+              <th scope="col">Grad</th>
+              <th scope="col">Selected Coursework</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Washington University in St. Louis</th>
+              <td>BS - CS & Finance</td>
+              <td>May 2027</td>
+              <td>Data Structures, Corporate Finance, Options & Futures</td>
+            </tr>
+            <tr>
+              <th scope="row">UCLA (visiting)</th>
+              <td>Economics & Statistics</td>
+              <td>2027</td>
+              <td>Probability, Econometrics, Web Programming</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Skills</h2>
+        <ul class="pill-list">
+          <li>HTML5</li>
+          <li>CSS (Flexbox, Media Queries)</li>
+          <li>JavaScript (DOM, Events)</li>
+          <li>Excel / Google Sheets</li>
+          <li>Basic Python / R</li>
+          <li>Storytelling</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <article class="project">
+          <h3>Resume Website</h3>
+          <p>
+            Single‑page resume site built with semantic HTML and modern, class‑appropriate CSS. Includes a theme toggle,
+            accessible navigation, and responsive Flexbox layout.
+          </p>
+          <a class="button" href="#contact">Get in touch</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <form class="contact-form" action="#" method="post">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+            <p class="error" aria-live="polite">Please enter your name.</p>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="jane@example.com" required />
+            <p class="error" aria-live="polite">Please enter a valid email.</p>
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Say hello…" required></textarea>
+            <p class="error" aria-live="polite">Please enter a message.</p>
+          </div>
+          <button class="button" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Your Name · <a href="#top" id="toTop">Back to top</a></p>
+    </div>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>
