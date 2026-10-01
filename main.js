@@ -9,7 +9,7 @@ window.mediaHTML = function (photo, label) {
   }
   return `<div class="pcard-media"><div class="img-placeholder">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
-      <rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5.5-5.5L3 19"/>
+      <rect x="3" y="5" width="18" height="14" rx="0"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5.5-5.5L3 19"/>
     </svg>
     <span>Photograph coming soon</span>
   </div></div>`;
@@ -70,121 +70,59 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ---------- Noir mode toggle (persisted) ---------- */
-  const html = document.documentElement;
-  const applyMode = on => html.classList.toggle("noir", on);
-  applyMode(localStorage.getItem("sagar-noir") === "1");
-  document.querySelectorAll(".bp-toggle").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const on = !html.classList.contains("noir");
-      applyMode(on);
-      localStorage.setItem("sagar-noir", on ? "1" : "0");
-      burstPetals(btn, on ? "#D9C39A" : "#AE8F56", 14);
-    });
-  });
-
   /* ---------- Mobile nav ---------- */
   const burger = document.querySelector(".burger");
-  const navlinks = document.querySelector(".navlinks");
-  if (burger) {
+  const nav = document.querySelector(".navlinks");
+  if (burger && nav) {
     burger.addEventListener("click", () => {
-      burger.classList.toggle("open");
-      navlinks.classList.toggle("open");
+      const open = nav.classList.toggle("open");
+      burger.classList.toggle("x", open);
     });
-    navlinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
-      burger.classList.remove("open"); navlinks.classList.remove("open");
+    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      nav.classList.remove("open"); burger.classList.remove("x");
     }));
   }
 
-  /* ---------- Hide nav on scroll down, show on scroll up ---------- */
-  const topbar = document.querySelector(".topbar");
-  let lastY = window.scrollY;
-  window.addEventListener("scroll", () => {
-    const y = window.scrollY;
-    if (topbar) {
-      if (y > lastY && y > 140) topbar.classList.add("hide");
-      else topbar.classList.remove("hide");
-    }
-    lastY = y;
-    document.getElementById("totop")?.classList.toggle("show", y > 600);
-  }, { passive: true });
+  /* ---------- Animated counters (US number format) ---------- */
+  const counters = document.querySelectorAll(".counter .n, .stat .num");
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.count, suffix = el.dataset.suffix || "";
+    const t0 = performance.now(), dur = 1600;
+    const tick = t => {
+      const p = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target).toLocaleString("en-US") + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    cio.unobserve(el);
+  }), { threshold: .4 });
+  counters.forEach(c => cio.observe(c));
 
-  /* ---------- Active nav link ---------- */
-  const here = location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll(".navlinks a").forEach(a => {
-    if (a.getAttribute("href") === here) a.classList.add("active");
+  /* ---------- Reveal on scroll ---------- */
+  const rio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); rio.unobserve(e.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll(".reveal").forEach(el => rio.observe(el));
+
+  /* ---------- Staggered grids ---------- */
+  document.querySelectorAll(".reveal-stagger").forEach(grid => {
+    const items = grid.children;
+    const gio = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { grid.classList.add("in"); gio.disconnect(); }
+    }), { threshold: .1 });
+    gio.observe(grid);
   });
 
-  /* ---------- Scroll reveal ---------- */
-  const revealEls = document.querySelectorAll(".reveal");
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-  }, { threshold: 0.15 });
-  revealEls.forEach((el, i) => { el.style.setProperty("--i", i % 8); io.observe(el); });
+  /* ---------- Footer year ---------- */
+  const yr = document.getElementById("yr");
+  if (yr) yr.textContent = new Date().getFullYear();
 
-  /* ---------- Counters ---------- */
-  document.querySelectorAll(".counter .n, .stat .num").forEach(el => {
-    const target = parseFloat(el.dataset.count);
-    if (isNaN(target)) return;
-    const suffix = el.dataset.suffix || "";
-    const io3 = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (!en.isIntersecting) return;
-        io3.disconnect();
-        let start = null; const dur = 1400;
-        const step = ts => {
-          if (!start) start = ts;
-          const p = Math.min((ts - start) / dur, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(eased * target) + suffix;
-          if (p < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      });
-    }, { threshold: 0.5 });
-    io3.observe(el);
-  });
-
-  /* ---------- Magnetic buttons ---------- */
-  document.querySelectorAll(".btn").forEach(btn => {
-    btn.addEventListener("mousemove", e => {
-      const r = btn.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width / 2;
-      const y = e.clientY - r.top - r.height / 2;
-      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
-    });
-    btn.addEventListener("mouseleave", () => { btn.style.transform = "translate(0,0)"; });
-  });
-
-  /* ---------- Tilt on any static photo/placeholder already in the page ---------- */
-  attachTilt(document);
-
-  /* ---------- Back to top ---------- */
-  const totop = document.createElement("button");
-  totop.id = "totop"; totop.innerHTML = "&uarr;"; totop.setAttribute("aria-label", "Back to top");
-  document.body.appendChild(totop);
-  totop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-  /* ---------- Gold petal burst ---------- */
-  window.burstPetals = function (originEl, color = "#AE8F56", count = 18) {
-    const r = originEl.getBoundingClientRect();
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement("div");
-      p.className = "petal";
-      p.style.width = (6 + Math.random() * 6) + "px";
-      p.style.height = (6 + Math.random() * 6) + "px";
-      p.style.background = color;
-      p.style.left = (r.left + r.width / 2) + "px";
-      p.style.top = (r.top + r.height / 2) + "px";
-      document.body.appendChild(p);
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 60 + Math.random() * 90;
-      const dx = Math.cos(angle) * dist, dy = Math.sin(angle) * dist - 40;
-      p.animate([
-        { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
-        { transform: `translate(${dx}px, ${dy + 120}px) rotate(${Math.random() * 480}deg)`, opacity: 0 }
-      ], { duration: 900 + Math.random() * 500, easing: "cubic-bezier(.2,.8,.3,1)" }).onfinish = () => p.remove();
-    }
-  };
+  /* ---------- Back-to-top ---------- */
+  const totop = document.getElementById("totop");
+  if (totop) {
+    addEventListener("scroll", () => totop.classList.toggle("show", scrollY > 600), { passive: true });
+    totop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+  }
 
 });
