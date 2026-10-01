@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (burger && nav) {
     burger.addEventListener("click", () => {
       const open = nav.classList.toggle("open");
-      burger.classList.toggle("x", open);
+      burger.classList.toggle("open", open);
     });
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
       nav.classList.remove("open"); burger.classList.remove("x");
