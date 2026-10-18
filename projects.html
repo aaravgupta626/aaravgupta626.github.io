@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projects — Sagar Construction Co.</title>
 <meta name="description" content="Completed and ongoing projects by Sagar Construction Co. across Mumbai, from 1971 to today.">
+<meta property="og:title" content="Projects — Sagar Construction Co.">
+<meta property="og:description" content="Completed and ongoing projects by Sagar Construction Co. across Mumbai, from 1971 to today.">
+<meta property="og:type" content="website">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,6 +21,7 @@
     <a href="about.html">About</a>
     <a href="projects.html">Projects</a>
     <a href="partners.html">Partners</a>
+    <a href="careers.html">Careers</a>
   </nav>
   <div class="nav-right">
     <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -46,6 +50,9 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
           <input type="text" id="search" placeholder="Search name or locality…">
         </div>
+        <select id="area-filter" class="area-filter" aria-label="Filter by locality">
+          <option value="">All localities</option>
+        </select>
       </div>
       <div class="count-line" id="count-line"></div>
       <div class="card-grid reveal-stagger" id="project-grid"></div>
@@ -54,6 +61,10 @@
   </section>
 
 </main>
+
+<a class="wa-float" href="https://wa.me/919137324613?text=Hi, I%27d like to enquire about Sagar Construction Co. projects." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <!-- MODAL -->
 <div class="modal-backdrop" id="modal-backdrop">
@@ -67,6 +78,10 @@
       <div class="row"><span>Status</span><span id="m-status">—</span></div>
       <div class="row"><span>Size</span><span id="m-value">—</span></div>
       <p style="margin-top:22px; color:var(--fg-soft); font-weight:300; line-height:1.7;" id="m-note">—</p>
+      <div class="modal-cta">
+        <a class="btn" id="m-whatsapp" href="#" target="_blank" rel="noopener"><span>WhatsApp us</span></a>
+        <a class="btn ghost" id="m-mail" href="#"><span>Email enquiry</span></a>
+      </div>
     </div>
   </div>
 </div>
@@ -86,6 +101,7 @@
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="partners.html">Partners</a>
+        <a href="careers.html">Careers</a>
       </div>
       <div>
         <h4>Projects</h4>
@@ -95,7 +111,7 @@
       <div>
         <h4>Contact</h4>
         <a href="mailto:info@sagarconstruction.example">info@sagarconstruction.example</a>
-        <a href="tel:+912200000000">+91 22 0000 0000</a>
+        <a href="tel:+919137324613">+91 91373 24613</a>
         <a href="https://maps.google.com/maps?q=Nana+Chowk,+801+Autcommerce+House,+Kennedy+Bridge,+Mumbai,+Maharashtra+400007" target="_blank" rel="noopener">Nana Chowk, 801 Autcommerce House,<br>Kennedy Bridge, Mumbai 400007</a>
         <a href="https://instagram.com/sagarconstructionco" target="_blank" rel="noopener">@sagarconstructionco</a>
       </div>
@@ -116,7 +132,16 @@ const countLine = document.getElementById("count-line");
 const noResults = document.getElementById("no-results");
 const searchInput = document.getElementById("search");
 const tabs = document.querySelectorAll(".tab");
+const areaFilter = document.getElementById("area-filter");
 let currentFilter = "all";
+let currentArea = "";
+
+/* populate locality options from the register */
+[...new Set(PROJECTS.map(p => p.area))].sort().forEach(a => {
+  const o = document.createElement("option");
+  o.value = a; o.textContent = a;
+  areaFilter.appendChild(o);
+});
 
 function renderCards(list){
   grid.innerHTML = "";
@@ -129,7 +154,7 @@ function renderCards(list){
     el.innerHTML = `
       ${mediaHTML(p.photo, p.name + ", " + p.area)}
       <div class="body">
-        <div class="pk"><span class="badge ${p.status}">${p.status}</span>${p.jv ? '<span class="badge jv">JV</span>' : ""}${p.flagship ? '<span class="badge flagship">flagship</span>' : ""}</div>
+        <div class="pk"><span class="badge ${p.status}">${p.status}</span>${p.jv ? '<span class="badge jv">JV</span>' : ""}</div>
         <h3>${p.name}</h3>
         <div class="loc">${p.area} · ${p.year}</div>
         <p class="note">${p.note}</p>
@@ -145,9 +170,11 @@ function renderCards(list){
 function applyFilters(){
   const q = searchInput.value.trim().toLowerCase();
   let list = PROJECTS.filter(p => currentFilter === "all" || p.status === currentFilter);
+  if (currentArea) list = list.filter(p => p.area === currentArea);
   if (q) list = list.filter(p => p.name.toLowerCase().includes(q) || p.area.toLowerCase().includes(q));
   renderCards(list);
 }
+areaFilter.addEventListener("change", () => { currentArea = areaFilter.value; applyFilters(); });
 
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
@@ -179,6 +206,8 @@ function openModal(p){
   document.getElementById("m-value").textContent = p.size + (p.completionTarget ? ` · Due ${p.completionTarget}` : "");
   document.getElementById("m-note").textContent = p.note;
   mMedia.innerHTML = mediaHTML(p.photo, p.name + ", " + p.area);
+  document.getElementById("m-whatsapp").href = "https://wa.me/919137324613?text=" + encodeURIComponent("Hi, I'm interested in " + p.name + " (" + p.area + "). Please share details.");
+  document.getElementById("m-mail").href = "mailto:info@sagarconstruction.example?subject=" + encodeURIComponent("Enquiry: " + p.name + " (" + p.area + ")");
   backdrop.classList.add("show");
   document.body.style.overflow = "hidden";
 }

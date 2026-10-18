@@ -55,21 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("scroll", updateProgress, { passive: true });
   updateProgress();
 
-  /* ---------- Custom cursor: soft glow dot ---------- */
-  if (matchMedia("(hover:hover) and (pointer:fine)").matches) {
-    const dot = document.createElement("div"); dot.className = "cursor-dot";
-    const ring = document.createElement("div"); ring.className = "cursor-ring";
-    document.body.append(dot, ring);
-    let rx = 0, ry = 0, mx = 0, my = 0;
-    window.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + "px"; dot.style.top = my + "px"; });
-    const loop = () => { rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18; ring.style.left = rx + "px"; ring.style.top = ry + "px"; requestAnimationFrame(loop); };
-    loop();
-    document.querySelectorAll("a, button, .pcard, input").forEach(el => {
-      el.addEventListener("mouseenter", () => ring.classList.add("active"));
-      el.addEventListener("mouseleave", () => ring.classList.remove("active"));
-    });
-  }
-
   /* ---------- Mobile nav ---------- */
   const burger = document.querySelector(".burger");
   const nav = document.querySelector(".navlinks");
