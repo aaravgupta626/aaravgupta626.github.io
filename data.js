@@ -29,7 +29,7 @@ const PROJECTS = [
 const PARTNERS = [
   { name: "Shri Pankaj Gupta", role: "Partner", photo: null, bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
   { name: "Shri Abhinav Gupta", role: "Partner", photo: "abhinav-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
-  { name: "Shri Abhilash Gupta", role: "Partner", photo: null, bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
+  { name: "Shri Abhilash Gupta", role: "Partner", photo: "abhilash-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
 ];
 
 function sqftToNumber(str) {
