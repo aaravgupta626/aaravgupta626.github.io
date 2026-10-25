@@ -205,11 +205,11 @@ function openModal(p){
   mMedia.innerHTML = mediaHTML(p.photo, p.name + ", " + p.area);
   document.getElementById("m-whatsapp").href = "https://wa.me/919137324613?text=" + encodeURIComponent("Hi, I'm interested in " + p.name + " (" + p.area + "). Please share details.");
   document.getElementById("m-mail").href = "mailto:info@sagarconstructionco.com?subject=" + encodeURIComponent("Enquiry: " + p.name + " (" + p.area + ")");
-  backdrop.classList.add("show");
+  backdrop.classList.add("open");
   document.body.style.overflow = "hidden";
 }
 function closeModal(){
-  backdrop.classList.remove("show");
+  backdrop.classList.remove("open");
   document.body.style.overflow = "";
 }
 document.getElementById("modal-close").addEventListener("click", closeModal);
