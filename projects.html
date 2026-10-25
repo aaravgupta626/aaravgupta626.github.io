@@ -168,6 +168,7 @@ function applyFilters(){
   let list = PROJECTS.filter(p => currentFilter === "all" || p.status === currentFilter);
   if (currentArea) list = list.filter(p => p.area === currentArea);
   if (q) list = list.filter(p => p.name.toLowerCase().includes(q) || p.area.toLowerCase().includes(q));
+  list.sort((a, b) => b.year - a.year);
   renderCards(list);
 }
 areaFilter.addEventListener("change", () => { currentArea = areaFilter.value; applyFilters(); });
