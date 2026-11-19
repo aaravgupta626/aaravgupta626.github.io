@@ -22,7 +22,7 @@ const PROJECTS = [
   { name: "Utsav Apartments", area: "Panvel", year: 2002, size: "15,000 sq ft", status: "completed", note: "Festive-themed residential development." },
   { name: "Lonavala Commercial Building", area: "Lonavala", year: 2010, size: "40,000 sq ft", status: "completed", note: "Our first hill-station project in the Sahyadris." },
   { name: "Raj Vihar", area: "Mumbai", year: 2024, size: "30,000 sq ft", status: "completed", jv: true, note: "Completed in 2024, developed in joint venture — part of the firm's ongoing Mumbai portfolio.", photo: "raj-vihar.jpg" },
-  { name: "Emperia C2", area: "Mumbai", year: 2026, size: "1,250,000 sq ft", status: "ongoing", jv: true, completionTarget: "Dec 2028", note: "A large ongoing development, delivered in joint venture, targeted for completion by December 2028.", photo: "emperia-c2.jpg" },
+  { name: "Emperia C2", area: "Navi Mumbai", year: 2026, size: "1,250,000 sq ft", status: "ongoing", jv: true, completionTarget: "Dec 2028", note: "A large ongoing development, delivered in joint venture, targeted for completion by December 2028.", photo: "emperia-c2.jpg" },
   { name: "Mulund Project", area: "Mulund", year: 2026, size: "700,000+ sq ft", status: "ongoing", note: "A redevelopment now underway in Mulund, comprising 3 towers across 700,000+ sq ft — project name to be finalised." },
 ];
 
