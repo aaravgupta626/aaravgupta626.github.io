@@ -23,11 +23,11 @@ const PROJECTS = [
   { name: "Lonavala Villas", area: "Lonavala", year: 2010, size: "40,000 sq ft", status: "completed", note: "Our first hill-station project — weekend villas in the Sahyadris." },
   { name: "Raj Vihar", area: "Mumbai", year: 2024, size: "30,000 sq ft", status: "completed", jv: true, note: "Completed in 2024, developed in joint venture — part of the firm's ongoing Mumbai portfolio.", photo: "raj-vihar.jpg" },
   { name: "Emperia C2", area: "Mumbai", year: 2026, size: "1,250,000 sq ft", status: "ongoing", jv: true, completionTarget: "Dec 2028", note: "A large ongoing development, delivered in joint venture, targeted for completion by December 2028.", photo: "emperia-c2.jpg" },
-  { name: "Mulund Project", area: "Mulund", year: 2026, size: "700,000+ sq ft", status: "ongoing", note: "A Slum Rehabilitation Authority redevelopment now underway in Mulund, comprising 3 towers across 700,000+ sq ft — project name to be finalised." },
+  { name: "Mulund Project", area: "Mulund", year: 2026, size: "700,000+ sq ft", status: "ongoing", note: "A redevelopment now underway in Mulund, comprising 3 towers across 700,000+ sq ft — project name to be finalised." },
 ];
 
 const PARTNERS = [
-  { name: "Shri Pankaj Gupta", role: "Second Generation Partner · Retired", generation: "second", photo: "pankaj-gupta.jpg", bio: "Second-generation partner of the firm, now retired." },
+  { name: "Shri Pankaj Gupta", role: "Second Generation Partner", generation: "second", photo: "pankaj-gupta.jpg", bio: "Second-generation partner of the firm." },
   { name: "Shri Abhinav Gupta", role: "Partner", generation: "current", photo: "abhinav-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
   { name: "Shri Abhilash Gupta", role: "Partner", generation: "current", photo: "abhilash-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
 ];
