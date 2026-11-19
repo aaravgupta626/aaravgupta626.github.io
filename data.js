@@ -10,7 +10,7 @@ const PROJECTS = [
   { name: "Ridge Apartments", area: "Malabar Hill", year: 1975, size: "40,000 sq ft", status: "completed", note: "One of the firm's early landmark residential blocks, following soon after Panchratna.", photo: "ridge.jpg" },
   { name: "Odeon Theatre", area: "Girgaon", year: 1972, size: "20,000 sq ft", status: "completed", note: "A single-screen landmark built for the neighbourhood." },
   { name: "Odeon Apartments", area: "Girgaon", year: 1973, size: "30,000 sq ft", status: "completed", note: "Residential block raised beside the theatre, shops at street level.", photo: "odeon.jpg" },
-  { name: "Vellard View", area: "Mahim", year: 1977, size: "50,000 sq ft", status: "completed", note: "Named for the old Mahim causeway it overlooks." },
+  { name: "Vellard View", area: "Haji Ali", year: 1977, size: "50,000 sq ft", status: "completed", note: "Named for the old Mahim causeway it overlooks." },
   { name: "Rajnigandha Apartments", area: "New Panvel", year: 1988, size: "30,000 sq ft", status: "completed", note: "Part of our early push into the growing Panvel node." },
   { name: "Abhilash", area: "Chembur", year: 1988, size: "20,000 sq ft", status: "completed", note: "Built in the late-80s Chembur residential boom." },
   { name: "Vora Apartments", area: "Ghatkopar", year: 1979, size: "20,000 sq ft", status: "completed", note: "One of two sister blocks raised in Ghatkopar." },
@@ -23,13 +23,13 @@ const PROJECTS = [
   { name: "Lonavala Villas", area: "Lonavala", year: 2010, size: "40,000 sq ft", status: "completed", note: "Our first hill-station project — weekend villas in the Sahyadris." },
   { name: "Raj Vihar", area: "Mumbai", year: 2024, size: "30,000 sq ft", status: "completed", jv: true, note: "Completed in 2024, developed in joint venture — part of the firm's ongoing Mumbai portfolio.", photo: "raj-vihar.jpg" },
   { name: "Emperia C2", area: "Mumbai", year: 2026, size: "1,250,000 sq ft", status: "ongoing", jv: true, completionTarget: "Dec 2028", note: "A large ongoing development, delivered in joint venture, targeted for completion by December 2028.", photo: "emperia-c2.jpg" },
-  { name: "Mulund SRA Project", area: "Mulund", year: 2026, size: "700,000+ sq ft", status: "ongoing", note: "A Slum Rehabilitation Authority (SRA) redevelopment now underway in Mulund, comprising 3 towers across 700,000+ sq ft — project name to be finalised." },
+  { name: "Mulund Project", area: "Mulund", year: 2026, size: "700,000+ sq ft", status: "ongoing", note: "A Slum Rehabilitation Authority redevelopment now underway in Mulund, comprising 3 towers across 700,000+ sq ft — project name to be finalised." },
 ];
 
 const PARTNERS = [
-  { name: "Shri Pankaj Gupta", role: "Partner", photo: "pankaj-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
-  { name: "Shri Abhinav Gupta", role: "Partner", photo: "abhinav-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
-  { name: "Shri Abhilash Gupta", role: "Partner", photo: "abhilash-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
+  { name: "Shri Pankaj Gupta", role: "Second Generation Partner · Retired", generation: "second", photo: "pankaj-gupta.jpg", bio: "Second-generation partner of the firm, now retired." },
+  { name: "Shri Abhinav Gupta", role: "Partner", generation: "current", photo: "abhinav-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
+  { name: "Shri Abhilash Gupta", role: "Partner", generation: "current", photo: "abhilash-gupta.jpg", bio: "Part of the current generation of leadership carrying the firm's projects forward across Mumbai." },
 ];
 
 function sqftToNumber(str) {
